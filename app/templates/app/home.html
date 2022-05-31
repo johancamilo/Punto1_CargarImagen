@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        img {
+            width: 16.2%;
+        }
+        img:hover {
+            -webkit-box-shadow: 3px 3px 3px 1px rgba(0,0,0,0.14);
+            -moz-box-shadow: 3px 3px 3px 1px rgba(0,0,0,0.14);
+            box-shadow: 3px 3px 3px 1px rgba(0,0,0,0.14);
+        }
+        .form{
+            left: 32%;
+            position:absolute;
+            font-size:20px;
+            font-weight:bold; 
+
+        
+            background-color: #6C3FAC;
+            border: 1px solid #6C3FAC;
+            border-radius: 30px;
+            color: var(--white);
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 52px 10px 58px;
+            width: auto;
+        }
+     
+        fieldset {
+        margin-top: 6%;
+        border: 2px solid #6C3FAC;
+	    border-radius: 4px;
+        border-color: #6C3FAC;
+        }
+
+        legend {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: var(--purple);
+            font-size: 17px;
+            font-weight: bold;
+            padding: 3px 5px 3px 7px;
+            width: auto;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <fieldset class="container col-10" >
+    <legend>Cargar Imagen</legend>
+    <div class="container col-8" >
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-row" style="margin-top: 2%;">
+                <div class="form-group col-md-6">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <div class="form-group col-md-6">
+                    <button type="submit" value="subir" class="btn btn-primary btn-lg form">Subir Imagen</button>
+                </div>
+            </div>
+            
+        </form>
+        {{ mensaje }}   
+    </div>
+    </fieldset>
+    <div class="container col-10" style="margin-top: 2%;">
+        {% load static %}
+        {%  for i in images %}
+        {% if i.imagen %}
+        <img src="{{ i.imagen.url }}" class="img-thumbnail" alt="log" >
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
